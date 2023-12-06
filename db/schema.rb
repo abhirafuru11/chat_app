@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_06_134851) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_06_164240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chats", force: :cascade do |t|
     t.boolean "archived", default: false
     t.text "body"
-    t.integer "sent_by"
+    t.integer "sender_type"
     t.bigint "profile_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["archived"], name: "index_chats_on_archived"
     t.index ["profile_id"], name: "index_chats_on_profile_id"
   end
 
@@ -30,6 +31,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_06_134851) do
     t.integer "gender", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_profiles_on_category"
+    t.index ["gender", "category"], name: "index_profiles_on_gender_and_category"
   end
 
   create_table "servers", force: :cascade do |t|
