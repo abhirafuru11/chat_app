@@ -1,0 +1,1 @@
+ADDITIONAL_PAYLOAD = JSON.parse(File.read("#{Rails.root}/config/additional_payload.json")).freeze
