@@ -2,9 +2,9 @@ require 'net/http'
 
 class ChatService
   class << self
-    def call(message_body, profile_id)
+    def call(chat_body, profile_id)
       profile = Profile.find_by(id: profile_id)
-      payload = build_payload(message_body, profile)
+      payload = build_payload(chat_body, profile)
       payload = update_payload payload
       payload = build_message_history(payload, profile)
 
@@ -13,10 +13,10 @@ class ChatService
 
     private
 
-    def build_payload(message_body, profile)
+    def build_payload(chat_body, profile)
       payload = {
         "your_name": 'Abhi',
-        "user_input": message_body,
+        "user_input": chat_body,
         "name1": 'Abhi',
         "name2": profile.name,
         "greeting": 'Hello, how are you?',
@@ -25,7 +25,7 @@ class ChatService
       }
     end
 
-    def update_payload
+    def update_payload payload
       payload.merge!(ADDITIONAL_PAYLOAD)
     end
 
@@ -51,7 +51,7 @@ class ChatService
       payload
     end
 
-    def get_response(payload, conversation)
+    def get_response(payload, profile)
       url = URI.parse(get_server_url)
       http = Net::HTTP.new(url.host, url.port)
       request = Net::HTTP::Post.new(url.path, {'Content-Type' => 'application/json'})
@@ -60,7 +60,6 @@ class ChatService
 
       if response.is_a?(Net::HTTPSuccess)
         response_json = JSON.parse(response.body)
-        
         profile.chats.create(
           body: response_json['results'][0]['history']['internal'].last.last,
           sender_type: 'assistant'
@@ -68,10 +67,11 @@ class ChatService
       else
         puts "Error:: #{response.code} - #{response.message}"
       end
+
     end
 
     def get_server_url
-      LoadBalanceService.call
+      LoadBalancerService.call
     end
   end
 end
