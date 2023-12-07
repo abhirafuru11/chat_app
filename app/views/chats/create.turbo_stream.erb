@@ -1,0 +1,6 @@
+<%= turbo_stream.append "#{dom_id(@profile)}_chats" do %>
+  <%= render partial: "chat", locals: { chat: @profile.chats.last }, scroll_to: true %>
+<% end %>
+<%= turbo_stream.replace "#{dom_id(@profile)}_chat_form" do %>
+  <%= render partial: "form", locals: { profile: @profile } %>
+<% end %>

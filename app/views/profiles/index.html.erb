@@ -1,0 +1,40 @@
+<h1>All Profiles</h1>
+
+<%= search_form_for @q do |f| %>
+  <div>
+    <%= f.label :gender_eq, 'Gender' %>
+    <%= f.select :gender_eq, Profile.genders.map{|key, val| [key, val]}, { include_blank: true } %>
+  </div>
+  <div>
+    <%= f.label :category_eq, 'Category' %>
+    <%= f.select :category_eq, Profile.categories.map{|key, val| [key, val]}, { include_blank: true } %>
+  </div>
+  <div>
+    <%= f.submit 'Filter' %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.name %></td>
+        <td><%= profile.gender %></td>
+        <td><%= profile.category %></td>
+        <td>
+          <%= link_to "Chat", profile_chats_path(profile_id: profile.id), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @profiles %>

@@ -1,0 +1,13 @@
+<div id="<%= dom_id(chat) %>_chats">
+  <div class="<%= chat.sender_type %>">
+    <% if chat.sender_type == 'user' %>
+      <strong>User:</strong> <%= chat.body %>
+    <% elsif chat.sender_type == 'assistant' %>
+      <strong><%= chat.profile.name %>:</strong> <%= chat.body %>
+    <% else %>
+      <%= chat.body %>
+    <% end %>
+  </div>
+</div>
+
+

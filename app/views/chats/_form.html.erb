@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "#{dom_id(@profile)}_chat_form" do %>
+  <%= form_with(model: Chat.new, url: profile_chats_path(profile_id: @profile.id)) do |form| %>
+    <%= form.text_field :body, placeholder: 'Type your message...' %>
+    <%= form.submit 'Send message' %>
+  <% end %>
+<% end %>

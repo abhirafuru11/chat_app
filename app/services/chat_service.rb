@@ -8,7 +8,7 @@ class ChatService
       payload = update_payload payload
       payload = build_message_history(payload, profile)
 
-      get_response(payload, profile)
+      send_message_to_ai(payload, profile)
     end
 
     private
@@ -20,7 +20,7 @@ class ChatService
         "name1": 'Abhi',
         "name2": profile.name,
         "greeting": 'Hello, how are you?',
-        "context": "Friendly AI, #{profile.gender}, #{profile.category}",
+        "context": "Candy AI, #{profile.gender}, #{profile.category}",
         "character": 'Example'
       }
     end
@@ -51,7 +51,7 @@ class ChatService
       payload
     end
 
-    def get_response(payload, profile)
+    def send_message_to_ai(payload, profile)
       url = URI.parse(get_server_url)
       http = Net::HTTP.new(url.host, url.port)
       request = Net::HTTP::Post.new(url.path, {'Content-Type' => 'application/json'})
@@ -61,7 +61,7 @@ class ChatService
       if response.is_a?(Net::HTTPSuccess)
         response_json = JSON.parse(response.body)
         profile.chats.create(
-          body: response_json['results'][0]['history']['internal'].last.last,
+          body: response_json['results'][0]['history']['internal'].flatten.last,
           sender_type: 'assistant'
         )
       else

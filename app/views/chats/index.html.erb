@@ -1,0 +1,9 @@
+<turbo-frame id="current_profile_chats">
+  <%= turbo_stream_from "#{dom_id(@profile)}_chats" %>
+  <h1>Chat with <%= @profile.name %></h1>
+  <div id="<%= dom_id(@profile) %>_chats">
+    <%= render @profile.chats %>
+  </div>
+
+  <%= render partial: "form" %>
+</turbo-frame>
