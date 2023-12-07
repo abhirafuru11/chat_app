@@ -61,4 +61,13 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.action_controller.enable_fragment_cache_logging = true
+
+  config.cache_store = :redis_cache_store, { url:  'redis://127.0.0.1:6379/0', compress: true }
+
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=#{2.days.to_i}"
+  }
+
 end

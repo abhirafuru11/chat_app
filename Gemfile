@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 
 gem 'faker'
 gem 'rspec-rails'
+gem 'rails-controller-testing'
 gem 'factory_bot_rails'
 gem 'ransack'
 gem 'kaminari'
@@ -73,4 +74,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "byebug"
+
 end
