@@ -1,0 +1,35 @@
+Before Indexing
+
+Filter Parameters | Real Time | System Time(CPU) | User Time(CPU)  | Total Time
+------------------------------------------------------------------------------
+{:gender_eq=>"male"} |   0.0263419998   0.0012380000   0.023753000		0.0249910000
+{:gender_eq=>"female"} | 0.0177060002   0.0017860000   0.0154449999 	0.0172309999
+{:category_eq=>"anime"} | 0.0196010004   0.0018179999   0.0177849999		0.0196029999
+{:category_eq=>"realistic"} | 0.0213119992   0.0018369999   0.0185040000 0.0203410000
+{:gender_eq=>"male", :category_eq=>"anime"} |   0.0338920000   0.0005920000   0.0326519999 0.0332439999
+{:gender_eq=>"female", :category_eq=>"realistic"} |   0.0337660005   0.0002030000   0.0335680000 0.0337710000
+{:gender_eq=>"male", :category_eq=>"realistic"} |   0.0332519998   0.0001529999   0.0331009999 0.0332539999
+{:gender_eq=>"female", :category_eq=>"anime"} |   0.0317320004   0.0002119999   0.0315219999 0.0317339999
+
+
+
+After Indexing
+
+Filter Parameters | Real Time | System Time(CPU) | User Time(CPU)  | Total Time
+------------------------------------------------------------------------------
+{:gender_eq=>"male"} |   0.0181319992   0.0001210000   0.0180150000 0.0181360000
+{:gender_eq=>"female"} |   0.0171850007 0.0001640000   0.0170299999 0.0171939999
+{:category_eq=>"anime"} |   0.0167380003   0.0010419999   0.0156979999 0.0167399999
+{:category_eq=>"realistic"} |   0.0198409995   0.0001659999   0.0196749999 0.0198409999
+{:gender_eq=>"male", :category_eq=>"anime"} |   0.01909600012   0.0058070000   0.0095199999 0.0153269999
+{:gender_eq=>"female", :category_eq=>"realistic"} |   0.0297110006   0.00033600000  0.0293780000 0.0297140000
+{:gender_eq=>"male", :category_eq=>"realistic"} |   0.0306719997   0.0001540000   0.0305229999 0.0306769999
+
+{:gender_eq=>"female", :category_eq=>"anime"} |   0.0281509999   0.0022940000   0.0258620000 0.0281560000
+
+
+
+Observations
+
+Overall Improvement:
+	For most scenarios, adding an index significantly improves query performance by around 10-20% and it also improves the user and system cpu time outputs, which indicating more efficient utilization of CPU resources.

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Benchmark Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Before Indexing</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Filter Parameters</th>
+        <th>Real Time</th>
+        <th>System Time(CPU)</th>
+        <th>User Time(CPU)</th>
+        <th>Total Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Search by Gender (Male)</td>
+        <td>0.0263419998</td>
+        <td>0.0012380000 </td>
+        <td>0.023753000</td>
+        <td>0.0249910000</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Female)</td>
+        <td>0.0177060002</td>
+        <td>0.0017860000</td>
+        <td>0.0154449999</td>
+        <td>0.0172309999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Category (Anime)</td>
+        <td>0.0196010004</td>
+        <td>0.0018179999</td>
+        <td>0.0177849999</td>
+        <td>0.0196029999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Category (realistic)</td>
+        <td>0.0213119992</td>
+        <td>0.0018369999</td>
+        <td>0.0185040000</td>
+        <td>0.0203410000</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Male) and Category (Anime)</td>
+        <td>0.0338920000</td>
+        <td>0.0005920000</td>
+        <td>0.0326519999</td>
+        <td>0.0332439999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Female) and Category (Realistic)</td>
+        <td>0.0337660005</td>
+        <td>0.0002030000</td>
+        <td>0.0335680000</td>
+        <td>0.0337710000</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Male) and Category (Realistic)</td>
+        <td>0.0332519998</td>
+        <td>0.0001529999</td>
+        <td>0.0331009999</td>
+        <td>0.0332539999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Female) and Category (anime)</td>
+        <td>0.0317320004</td>
+        <td>0.0002119999</td>
+        <td>0.0315219999</td>
+        <td>0.0317339999</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>After Indexing</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Filter Parameters</th>
+        <th>Real Time</th>
+        <th>System Time(CPU)</th>
+        <th>User Time(CPU)</th>
+        <th>Total Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Search by Gender (Male)</td>
+        <td>0.0181319992</td>
+        <td>0.0001210000</td>
+        <td>0.0180150000</td>
+        <td>0.0181360000</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Female)</td>
+        <td>0.0171850007</td>
+        <td>0.0001640000</td>
+        <td>0.0170299999</td>
+        <td>0.0171939999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Category (Anime)</td>
+        <td>0.0167380003</td>
+        <td>0.0010419999</td>
+        <td>0.0156979999</td>
+        <td>0.0167399999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Category (realistic)</td>
+        <td>0.0198409995</td>
+        <td>0.0001659999</td>
+        <td>0.0196749999</td>
+        <td>0.0198409999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Male) and Category (Anime)</td>
+        <td>0.01909600012</td>
+        <td>0.0058070000</td>
+        <td>0.0095199999</td>
+        <td>0.0153269999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Female) and Category (Realistic)</td>
+        <td>0.0297110006</td>
+        <td>0.00033600000</td>
+        <td>0.0293780000</td>
+        <td>0.0297140000</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Male) and Category (Realistic)</td>
+        <td>0.0306719997</td>
+        <td>0.0001540000</td>
+        <td>0.0305229999</td>
+        <td>0.0306769999</td>
+      </tr>
+
+      <tr>
+        <td>Search by Gender (Female) and Category (anime)</td>
+        <td>0.0281509999</td>
+        <td>0.0022940000</td>
+        <td>0.0258620000</td>
+        <td>0.0281560000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Observations</h2>
+  <p>Overall Improvement: For most scenarios, Adding an index typically results in a 10–20% improvement in query performance. It also enhances the user and system CPU time outputs, suggesting a more effective use of CPU resources.</p>
+</body>
+</html>
